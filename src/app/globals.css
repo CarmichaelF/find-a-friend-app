@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.center-absolute {
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700;800&display=swap');
+}

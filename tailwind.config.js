@@ -1,8 +1,34 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.tsx"],
-  theme: {
-    extend: {},
+export const content = ['./src/**/*.tsx']
+export const theme = {
+  extend: {
+    colors: {
+      opal: { DEFAULT: '#F15156', 500: '#E44449' },
+      ateneo: '#0D3B66',
+      naples: '#F4D35E',
+    },
+    padding: {
+      30: '7.5rem',
+      31: '7.75rem',
+    },
+    fontFamily: {
+      sans: ['var(--font-nunito)'],
+    },
+    height: {
+      input: '72px',
+    },
+    width: {
+      input: '72px',
+    },
+    minWidth: {
+      70: '17.5rem',
+    },
+    maxWidth: {
+      container: '1420px',
+    },
+    borderRadius: {
+      input: '20px',
+    },
   },
-  plugins: [],
-};
+}
+export const plugins = []
