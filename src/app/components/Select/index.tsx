@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, useId } from 'react'
 import { Chevron } from '../icons/Chevron'
 import { tv } from 'tailwind-variants'
 import { Loader } from '../icons/Loader'
@@ -24,6 +24,9 @@ export function Select({
   loading = false,
   ...props
 }: InputProps) {
+  const generatedId = useId()
+  const id = props.id || generatedId
+
   const variants = tv({
     base: 'rounded-input h-input relative flex items-center gap-1 overflow-hidden border border-white bg-opal text-xl font-bold',
     variants: {
@@ -36,7 +39,7 @@ export function Select({
 
   return (
     <label
-      htmlFor="city-select"
+      htmlFor={id}
       className="flex items-center justify-start gap-6 text-base font-normal text-white"
     >
       {label && <span>{label}</span>}
@@ -48,7 +51,7 @@ export function Select({
         )}
         <select
           className="h-full w-full cursor-pointer appearance-none bg-inherit px-3 pr-7 outline-none transition-all"
-          id="city-select"
+          id={id}
           {...props}
           defaultValue="default-option"
         >
