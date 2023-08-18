@@ -1,20 +1,20 @@
 'use client'
 
 import { useGeoCity } from '@/hooks/useGeoCity'
-import { findAFriendAPI } from '@/services/api'
 import { Button } from '@/app/components/Button'
 import { Search } from '@/app/components/icons/Search'
-import { ComponentProps, useEffect, useMemo } from 'react'
+import { ComponentProps, useMemo } from 'react'
 import { useGeoState } from '@/hooks/useGeoState'
 import * as Select from '@/app/components/Select'
+import { useRouter } from 'next/navigation'
 
 export function Form(props: ComponentProps<'form'>) {
+  const { push } = useRouter()
   const {
     loading: loadingCity,
     cities,
     selectedCity,
     changeSelectedCity,
-    fetchCities,
   } = useGeoCity()
 
   const {
@@ -26,10 +26,7 @@ export function Form(props: ComponentProps<'form'>) {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const { data } = await findAFriendAPI<{ pets: Pet[] }>(
-      `/pets?city=${selectedCity?.nome}`,
-    )
-    console.log('data', data)
+    push('/search-results')
   }
 
   const stateOptions = useMemo(
@@ -49,12 +46,6 @@ export function Form(props: ComponentProps<'form'>) {
     [cities],
   )
 
-  useEffect(() => {
-    ;(async () => {
-      if (selectedState) await fetchCities(selectedState.sigla)
-    })()
-  }, [selectedState])
-
   return (
     <form
       className="flex items-center gap-8"
@@ -67,7 +58,10 @@ export function Form(props: ComponentProps<'form'>) {
           <Select.Root loading={loadingState}>
             <Select.Control
               name="state"
-              defaultOption="UF"
+              defaultOption={{
+                label: 'UF',
+                value: 'default-value',
+              }}
               value={selectedState?.id}
               options={stateOptions}
               onChange={(e) => changeSelectedState(Number(e.target.value))}
@@ -77,7 +71,10 @@ export function Form(props: ComponentProps<'form'>) {
         <Select.Root className="border-none bg-opal-500" loading={loadingCity}>
           <Select.Control
             name="city"
-            defaultOption="Selecione a UF"
+            defaultOption={{
+              label: 'Selecione a UF',
+              value: 'default-value',
+            }}
             options={cityOptions}
             disabled={!cityOptions?.length}
             value={selectedCity?.codigo_ibge}
