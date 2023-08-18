@@ -1,6 +1,11 @@
 'use client'
 
+import { LOCALSTORAGE } from '@/constants/localStorage'
 import { brasilAPI } from '@/services/api'
+import {
+  retrieveFromLocalStorage,
+  saveToLocalStorage,
+} from '@/utils/localStorage'
 import {
   PropsWithChildren,
   createContext,
@@ -54,6 +59,21 @@ export function GeoStateProvider({ children }: PropsWithChildren) {
       const fetchedStates = await fetchStates()
       setStates(fetchedStates)
     })()
+  }, [])
+
+  useEffect(() => {
+    if (selectedState === null) return
+    saveToLocalStorage({
+      key: LOCALSTORAGE.state,
+      value: selectedState,
+    })
+  }, [selectedState])
+
+  useEffect(() => {
+    const localStorageState = retrieveFromLocalStorage({
+      key: LOCALSTORAGE.state,
+    })
+    setSelectedState(localStorageState)
   }, [])
 
   return (

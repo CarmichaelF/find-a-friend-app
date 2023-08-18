@@ -12,7 +12,7 @@ export function Chevron(props: ComponentProps<'svg'>) {
     >
       <path
         d="M4 6l4 4 4-4"
-        stroke="#fff"
+        stroke="currentColor"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
