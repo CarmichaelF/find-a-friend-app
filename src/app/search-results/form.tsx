@@ -3,17 +3,18 @@
 import { useGeoState } from '@/hooks/useGeoState'
 import * as Select from '../components/Select'
 import { useGeoCity } from '@/hooks/useGeoCity'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Button } from '../components/Button'
 import { Search } from '../components/icons/Search'
+import { usePets } from '@/hooks/usePets'
 
 export function Form() {
+  const { fetchPets } = usePets()
   const {
     loading: loadingCity,
     cities,
     selectedCity,
     changeSelectedCity,
-    fetchCities,
   } = useGeoCity()
 
   const {
@@ -22,6 +23,11 @@ export function Form() {
     selectedState,
     changeSelectedState,
   } = useGeoState()
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (selectedCity?.nome) fetchPets(selectedCity?.nome)
+  }
 
   const stateOptions = useMemo(
     () =>
@@ -40,19 +46,19 @@ export function Form() {
     [cities],
   )
 
-  useEffect(() => {
-    ;(async () => {
-      if (selectedState) await fetchCities(selectedState.sigla)
-    })()
-  }, [selectedState])
-
   return (
-    <form className="flex w-full items-center gap-3 pr-10">
+    <form
+      className="flex w-full items-center gap-3 pr-10"
+      onSubmit={handleSubmit}
+    >
       <Select.Root loading={loadingState} className="bg-opal-500">
         <Select.Control
           name="state"
-          defaultOption="UF"
           value={selectedState?.id}
+          defaultOption={{
+            label: 'UF',
+            value: 'default-value',
+          }}
           options={stateOptions}
           onChange={(e) => changeSelectedState(Number(e.target.value))}
         />
@@ -63,10 +69,13 @@ export function Form() {
       >
         <Select.Control
           name="city"
-          defaultOption="Selecione a UF"
           options={cityOptions}
           disabled={!cityOptions?.length}
           value={selectedCity?.codigo_ibge}
+          defaultOption={{
+            label: 'Selecione a UF',
+            value: 'default-value',
+          }}
           onChange={(e) => changeSelectedCity(Number(e.target.value))}
         />
       </Select.Root>

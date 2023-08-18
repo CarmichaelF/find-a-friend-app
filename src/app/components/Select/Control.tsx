@@ -7,12 +7,12 @@ export type SelectOptions = {
 }
 
 interface ControlProps extends ComponentProps<'select'> {
-  defaultOption?: string
+  defaultOption?: SelectOptions
   options: SelectOptions[]
 }
 
 export function Control({
-  defaultOption,
+  defaultOption = { label: 'Select one', value: 'default' },
   options,
   className,
   ...props
@@ -20,17 +20,14 @@ export function Control({
   return (
     <select
       className={twMerge(
-        'h-full w-full cursor-pointer appearance-none bg-inherit px-5 pr-8 outline-none transition-all',
+        'h-full w-full cursor-pointer appearance-none bg-inherit px-5 pr-10 outline-none transition-all',
         className,
       )}
-      defaultValue="default-option"
       {...props}
     >
-      {defaultOption && (
-        <option disabled value="default-option" className="transition-all">
-          {defaultOption}
-        </option>
-      )}
+      <option value={defaultOption.value} className="transition-all">
+        {defaultOption.label}
+      </option>
       {options.map(({ label, value }) => (
         <option className="transition-all" key={value} value={value}>
           {label}
