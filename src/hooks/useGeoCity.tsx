@@ -1,7 +1,18 @@
 'use client'
 
+import { LOCALSTORAGE } from '@/constants/localStorage'
 import { brasilAPI } from '@/services/api'
-import { PropsWithChildren, createContext, useContext, useState } from 'react'
+import {
+  retrieveFromLocalStorage,
+  saveToLocalStorage,
+} from '@/utils/localStorage'
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 export type GeoCity = {
   codigo_ibge: string
@@ -39,6 +50,21 @@ export function GeoCityProvider({ children }: PropsWithChildren) {
     if (!cityFound) throw new Error('City not found')
     setSelectedCity(cityFound)
   }
+
+  useEffect(() => {
+    if (selectedCity === null) return
+    saveToLocalStorage({
+      key: LOCALSTORAGE.city,
+      value: selectedCity,
+    })
+  }, [selectedCity])
+
+  useEffect(() => {
+    const localStorageCity = retrieveFromLocalStorage<GeoCity>({
+      key: LOCALSTORAGE.city,
+    })
+    setSelectedCity(localStorageCity)
+  }, [])
 
   return (
     <GeoCityContext.Provider
