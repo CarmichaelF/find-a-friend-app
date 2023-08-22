@@ -1,12 +1,15 @@
 import Image from 'next/image'
-import { PetIcon } from '../components/icons/PetIcon'
+import { PetIcon } from '../../components/icons/PetIcon'
 
-interface PetCardProps {
+interface SearchResultsListCardProps {
   name: string
   image: string
 }
 
-export function PetCard({ name, image }: PetCardProps) {
+export function SearchResultsListCard({
+  name,
+  image,
+}: SearchResultsListCardProps) {
   return (
     <div className="flex flex-col items-center rounded-3xl bg-ateneo p-1 shadow">
       <Image
