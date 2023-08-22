@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
-import { PetCard } from './pet-card'
 import { usePets } from '@/hooks/usePets'
 import { useGeoCity } from '@/hooks/useGeoCity'
+import { SearchResultsListCard } from './SearchResultsListCard'
 
-export function PetsList() {
+export function SearchResultsList() {
   const { selectedCity } = useGeoCity()
   const { pets, fetchPets } = usePets()
 
@@ -16,7 +16,7 @@ export function PetsList() {
   return (
     <div className="grid grid-cols-3">
       {pets?.map(({ images, name, id }) => (
-        <PetCard image={images[0]} name={name} key={id} />
+        <SearchResultsListCard image={images[0]} name={name} key={id} />
       ))}
     </div>
   )

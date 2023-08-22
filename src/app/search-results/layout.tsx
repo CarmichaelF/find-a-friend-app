@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
-import { Aside } from './aside'
 import { GeoProvider } from '@/contexts/Geo'
 import { PetsProvider } from '@/contexts/Pets/PetsContext'
+import { Aside } from './Aside'
 
 export default function SearchResultsLayout({ children }: PropsWithChildren) {
   return (

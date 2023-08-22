@@ -1,14 +1,14 @@
 'use client'
 
 import { useGeoState } from '@/hooks/useGeoState'
-import * as Select from '../components/Select'
+import * as Select from '../../components/Select'
 import { useGeoCity } from '@/hooks/useGeoCity'
 import { useMemo } from 'react'
-import { Button } from '../components/Button'
-import { Search } from '../components/icons/Search'
+import { Button } from '../../components/Button'
+import { Search } from '../../components/icons/Search'
 import { usePets } from '@/hooks/usePets'
 
-export function Form() {
+export function AsideForm() {
   const { fetchPets } = usePets()
   const {
     loading: loadingCity,

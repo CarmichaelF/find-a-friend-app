@@ -3,10 +3,10 @@
 import { useGeoCity } from '@/hooks/useGeoCity'
 import { Button } from '@/app/components/Button'
 import { Search } from '@/app/components/icons/Search'
-import { ComponentProps, useMemo } from 'react'
+import { ComponentProps, useEffect, useMemo } from 'react'
 import { useGeoState } from '@/hooks/useGeoState'
 import * as Select from '@/app/components/Select'
-import { useRouter } from 'next/navigation'
+import { useRouter, redirect } from 'next/navigation'
 
 export function Form(props: ComponentProps<'form'>) {
   const { push } = useRouter()
@@ -37,6 +37,7 @@ export function Form(props: ComponentProps<'form'>) {
       })),
     [states],
   )
+
   const cityOptions = useMemo(
     () =>
       cities?.map(({ codigo_ibge: value, nome: label }) => ({
