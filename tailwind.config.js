@@ -13,6 +13,7 @@ export const theme = {
       naples: '#F4D35E',
       grey: '#F5F8FA',
       'light-grey': '#D3E2E5',
+      'dark-grey': '#8FA7B2',
     },
     padding: {
       30: '7.5rem',
@@ -34,7 +35,11 @@ export const theme = {
       'search-results': 'minmax(400px, 600px) 1fr',
     },
     maxWidth: {
+      'register-aside': '700px',
       container: '1420px',
+    },
+    maxHeight: {
+      'register-pet-form': '90vh',
     },
     borderRadius: {
       default: '20px',

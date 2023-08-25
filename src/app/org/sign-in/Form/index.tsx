@@ -1,6 +1,6 @@
 'use client'
 
-import { FormButton } from '@/app/components/form/Button'
+import { FormButton } from '@/app/components/form/FormButton'
 import { FormInput } from '@/app/components/form/FormInput'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -9,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { toast } from 'react-toastify'
 import { isObjectEmpty } from '@/utils/verify-empty-object'
-import { getSession, signIn } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 const SignInSchema = z.object({
@@ -39,13 +39,6 @@ export function SignInForm() {
     if (isObjectEmpty(errors)) return
     Object.values(errors).forEach((error) => toast(error.message))
   }, [errors])
-
-  useEffect(() => {
-    ;(async () => {
-      const session = await getSession()
-      console.log('SESSION: ', session)
-    })()
-  }, [])
 
   return (
     <form

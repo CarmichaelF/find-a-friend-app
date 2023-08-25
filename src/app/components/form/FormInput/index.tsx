@@ -1,8 +1,9 @@
 'use client'
 
-import { ComponentProps, forwardRef, useState } from 'react'
+import { ComponentProps, forwardRef, useId, useState } from 'react'
 import { EyeOff } from '../../icons/EyeOff'
 import { EyeOn } from '../../icons/EyeOn'
+import { FormLabel } from '../FormLabel'
 
 interface FormInputProps extends ComponentProps<'input'> {
   label?: string
@@ -10,6 +11,7 @@ interface FormInputProps extends ComponentProps<'input'> {
 
 const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   ({ type, label, ...props }, ref) => {
+    const id = useId()
     const isPasswordType = type === 'password'
 
     const [isOn, setIsOn] = useState(false)
@@ -21,16 +23,17 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     return (
       <div className="flex flex-col">
         {label && (
-          <label className="mb-2 text-base font-semibold text-ateneo">
+          <FormLabel className="mb-2" htmlFor={id}>
             {label}
-          </label>
+          </FormLabel>
         )}
         <div className="relative h-16">
           <input
-            {...props}
             type={isPasswordType ? (isOn ? 'text' : 'password') : type}
             className="h-full w-full rounded-lg border border-light-grey bg-grey px-4 text-lg font-semibold text-ateneo"
             ref={ref}
+            {...props}
+            id={id}
           />
           {isPasswordType && (
             <button

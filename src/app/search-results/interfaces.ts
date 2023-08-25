@@ -41,6 +41,8 @@ export interface Filters {
   petType: PetType
 }
 
+export type FiltersOptions = keyof Filters
+
 export interface PetFilters {
   filters: Filters
 }
