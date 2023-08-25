@@ -15,9 +15,9 @@ export function SearchResultsListCard({
       <Image
         src={image}
         alt={name}
-        width={300}
-        height={300}
-        className="w-full overflow-hidden rounded-3xl"
+        width={140}
+        height={140}
+        className="h-[140px] w-[140px] overflow-hidden rounded-3xl"
       />
       <div className="relative flex h-[70px] w-full flex-col items-center justify-end">
         <PetIcon className="absolute -top-1/3" />
