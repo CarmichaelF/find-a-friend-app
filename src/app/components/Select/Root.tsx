@@ -16,7 +16,7 @@ export function Root({
   return (
     <div
       className={twMerge(
-        'relative flex h-input items-center gap-1 overflow-hidden rounded-input border border-white bg-opal text-xl font-bold text-white',
+        'relative flex h-input items-center gap-1 overflow-hidden rounded-default border border-white bg-opal text-xl font-bold text-white',
         className,
       )}
       {...props}

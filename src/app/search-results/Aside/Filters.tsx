@@ -16,9 +16,9 @@ export function AsideFilters() {
 
   const onSelect = (event: ChangeEvent<HTMLSelectElement>) => {
     const current = new URLSearchParams(Array.from(searchParams.entries()))
+    const { name } = event.target
 
     const value = event.target.value.trim()
-    const { name } = event.target
 
     if (!value) {
       current.delete(name)
@@ -26,10 +26,11 @@ export function AsideFilters() {
       current.set(name, event.target.value)
     }
 
+    if (value === 'default') {
+      current.delete(name)
+    }
     const search = current.toString()
-
     const query = search ? `?${search}` : ''
-
     router.push(`${pathname}${query}`)
   }
 

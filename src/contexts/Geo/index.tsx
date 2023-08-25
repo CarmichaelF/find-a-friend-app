@@ -1,3 +1,5 @@
+'use client'
+
 import { PropsWithChildren } from 'react'
 import { GeoStateProvider } from './GeoStateContext'
 import { GeoCityProvider } from './GeoCityContext'

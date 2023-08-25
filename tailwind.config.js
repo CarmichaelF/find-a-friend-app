@@ -3,10 +3,16 @@ export const content = ['./src/**/*.tsx']
 export const theme = {
   extend: {
     colors: {
-      opal: { DEFAULT: '#F15156', 400: '#F75F64', 500: '#E44449' },
+      opal: {
+        DEFAULT: '#F15156',
+        400: '#F75F64',
+        500: '#E44449',
+        100: '#FBE1E2',
+      },
       ateneo: '#0D3B66',
       naples: '#F4D35E',
-      grey: '#FBE1E2',
+      grey: '#F5F8FA',
+      'light-grey': '#D3E2E5',
     },
     padding: {
       30: '7.5rem',
@@ -31,7 +37,7 @@ export const theme = {
       container: '1420px',
     },
     borderRadius: {
-      input: '20px',
+      default: '20px',
     },
   },
 }
