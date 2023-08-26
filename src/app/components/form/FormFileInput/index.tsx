@@ -39,20 +39,29 @@ export function FormFileInput({
 
   const id = useId()
 
-  const preventDefaultbehaviour = (ev: DragEvent<HTMLDivElement>) => {
+  // Drag/Drop handling functions
+  const preventDefaultBehaviour = (ev: DragEvent<HTMLDivElement>) => {
     ev.preventDefault()
     ev.stopPropagation()
   }
 
   const handleOnDragOver = (ev: DragEvent<HTMLDivElement>) => {
-    preventDefaultbehaviour(ev)
+    preventDefaultBehaviour(ev)
     setDragState(DragState.DRAGGING)
   }
 
   const handleOnDragLeave = (ev: DragEvent<HTMLDivElement>) => {
-    preventDefaultbehaviour(ev)
+    preventDefaultBehaviour(ev)
     setDragState(DragState.INACTIVE)
   }
+
+  const handleOnDrop = (ev: DragEvent<HTMLDivElement>) => {
+    preventDefaultBehaviour(ev)
+    setDragState(DragState.INACTIVE)
+
+    handleSetFiles(ev.dataTransfer.files)
+  }
+  // Drag/Drop handling functions
 
   const handleSetFiles = (fileList: FileList) => {
     const newFiles = [...fileList]
@@ -69,13 +78,6 @@ export function FormFileInput({
         )
       return filteredArray
     })
-  }
-
-  const handleOnDrop = (ev: DragEvent<HTMLDivElement>) => {
-    preventDefaultbehaviour(ev)
-    setDragState(DragState.INACTIVE)
-
-    handleSetFiles(ev.dataTransfer.files)
   }
 
   const handleOnFileChange = (ev: ChangeEvent<HTMLInputElement>) => {
