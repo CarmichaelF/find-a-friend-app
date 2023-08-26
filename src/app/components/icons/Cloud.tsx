@@ -12,7 +12,7 @@ export function Cloud(props: ComponentProps<'svg'>) {
     >
       <g
         clipPath="url(#clip0_1256_63)"
-        stroke="#0D3B66"
+        stroke="currentColor"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
