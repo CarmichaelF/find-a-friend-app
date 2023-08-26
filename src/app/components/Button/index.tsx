@@ -9,7 +9,7 @@ export function Button({
   return (
     <button
       className={twMerge(
-        'flex h-input w-input items-center justify-center overflow-hidden rounded-default bg-naples',
+        'flex h-16 w-20 items-center justify-center overflow-hidden rounded-default bg-naples',
         className,
       )}
       {...props}

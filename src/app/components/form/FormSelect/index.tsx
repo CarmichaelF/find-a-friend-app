@@ -26,7 +26,7 @@ export function FormSelect({
       <FormLabel htmlFor={id}>{label}</FormLabel>
       <div className="relative">
         <select
-          className=" h-16 w-full cursor-pointer rounded-lg border border-light-grey bg-grey px-5 text-lg font-semibold text-ateneo"
+          className="h-16 w-full cursor-pointer rounded-lg border border-light-grey bg-grey px-5 text-lg font-semibold text-ateneo"
           id={id}
           {...props}
         >

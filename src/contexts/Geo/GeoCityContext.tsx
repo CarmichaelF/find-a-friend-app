@@ -6,7 +6,7 @@ import { brasilAPI } from '@/services/api'
 import {
   retrieveFromLocalStorage,
   saveToLocalStorage,
-} from '@/utils/localStorage'
+} from '@/utils/local-storage'
 import { PropsWithChildren, createContext, useEffect, useState } from 'react'
 
 export type GeoCity = {

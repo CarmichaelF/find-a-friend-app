@@ -7,6 +7,8 @@ import { FormTextArea } from '@/app/components/form/FormTextArea'
 import { useGetMemoizedOptions } from '@/hooks/useGetMemoizedOptions'
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { FormPetRequirements } from './FormPetRequirements'
+import { Button } from '@/app/components/Button'
 
 export function RegisterForm({ className, ...props }: ComponentProps<'form'>) {
   const ageOptions = useGetMemoizedOptions('age')
@@ -18,6 +20,14 @@ export function RegisterForm({ className, ...props }: ComponentProps<'form'>) {
   const independenceOptions = useGetMemoizedOptions('independencyLevel')
 
   const environmentOptions = useGetMemoizedOptions('environment')
+
+  const handleOnUpload = (files: File[]) => {
+    console.log('RegisterForm files: ', files)
+  }
+
+  const handleOnRequirementsChange = (requirements: string[]) => {
+    console.log('RegisterForm requirements: ', requirements)
+  }
 
   return (
     <form
@@ -35,7 +45,12 @@ export function RegisterForm({ className, ...props }: ComponentProps<'form'>) {
         label="Nível de independência"
       />
       <FormSelect options={environmentOptions} label="Ambiente" />
-      <FormFileInput label="Fotos" />
+      <FormFileInput label="Fotos" multiple onUpload={handleOnUpload} />
+      <FormPetRequirements
+        className="mt-20"
+        onRequirementsChange={handleOnRequirementsChange}
+      />
+      <Button className="mt-32 w-full font-extrabold">Confirmar</Button>
     </form>
   )
 }

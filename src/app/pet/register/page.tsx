@@ -8,7 +8,7 @@ export default async function RegisterPet() {
     <div className="flex bg-opal-100">
       <RegisterAside />
 
-      <div className="max-h-register-pet-form m-auto h-full w-full max-w-register-aside overflow-auto rounded-default border border-light-grey bg-white px-20 py-16">
+      <div className="m-auto h-full max-h-register-pet-form w-full max-w-register-aside overflow-auto rounded-default border border-light-grey bg-white px-20 py-16">
         <div></div>
         <h1 className="mb-5 text-4xl font-extrabold text-ateneo">
           Adicione um pet

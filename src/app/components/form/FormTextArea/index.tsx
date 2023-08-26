@@ -16,7 +16,7 @@ export function FormTextArea({
       <div className="mb-2 flex items-center gap-6">
         {label && <FormLabel htmlFor={id}>{label}</FormLabel>}
         {maxLength && (
-          <span className="text-xs font-normal text-dark-grey">
+          <span className="text-dark-grey text-xs font-normal">
             {`Máximo de ${maxLength} caracteres`}
           </span>
         )}
@@ -24,7 +24,7 @@ export function FormTextArea({
 
       <textarea
         maxLength={maxLength}
-        className="h-32 w-full rounded-lg border border-light-grey bg-grey px-4 pt-3 text-lg font-semibold text-ateneo"
+        className="border-light-grey h-32 w-full rounded-lg border bg-grey px-4 pt-3 text-lg font-semibold text-ateneo"
         id={id}
         {...props}
       />
