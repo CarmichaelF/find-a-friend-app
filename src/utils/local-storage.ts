@@ -1,3 +1,5 @@
+'use client'
+
 import { LOCALSTORAGE } from '@/constants/localStorage'
 
 type SaveToLocalStorageProps = {

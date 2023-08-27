@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { NextAuthProvider } from './providers'
 
 const inter = Nunito({
   subsets: ['latin'],
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} font-sans antialiased`}>
       <body>
-        <main>{children}</main>
+        <NextAuthProvider>
+          <main>{children}</main>
+        </NextAuthProvider>
         <ToastContainer />
       </body>
     </html>

@@ -1,13 +1,17 @@
 'use client'
 
-import { FiltersOptions } from '@/app/search-results/interfaces'
-import { usePets } from '@/hooks/usePets'
 import { useMemo } from 'react'
 
-export function useGetMemoizedOptions(filter: FiltersOptions) {
-  const { allFilters } = usePets()
+interface UseGetMemoizedOptionsProps<T> {
+  allOptions: T
+  filter: keyof T
+}
 
-  const valuesToIterate = allFilters?.[filter] || []
+export function useGetMemoizedOptions<T>({
+  allOptions,
+  filter,
+}: UseGetMemoizedOptionsProps<T>) {
+  const valuesToIterate = allOptions?.[filter] || []
 
   const options = Object.values(valuesToIterate).map((option) => ({
     label: option,

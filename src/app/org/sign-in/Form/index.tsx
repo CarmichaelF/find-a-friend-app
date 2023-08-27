@@ -12,20 +12,30 @@ import { isObjectEmpty } from '@/utils/verify-empty-object'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-const SignInSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8).max(20),
-})
-
-type SignInSchemaType = z.infer<typeof SignInSchema>
-
 export function SignInForm() {
+  const SignInSchema = z.object({
+    email: z.string().email({
+      message: 'E-mail inválido.',
+    }),
+    password: z
+      .string()
+      .min(8, {
+        message: 'A senha precisa ter no mínimo 8 caracteres.',
+      })
+      .max(20, {
+        message: 'A senha precisa ter no máximo 20 caracteres.',
+      }),
+  })
+
+  type SignInSchemaType = z.infer<typeof SignInSchema>
+
   const router = useRouter()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignInSchemaType>({ resolver: zodResolver(SignInSchema) })
+
   const onSubmit: SubmitHandler<SignInSchemaType> = async (data) => {
     const result = await signIn('credentials', {
       redirect: false,

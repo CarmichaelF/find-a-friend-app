@@ -1,3 +1,5 @@
+'use client'
+
 import { PlusButton } from '@/app/components/PlusButton'
 import { FormInput } from '@/app/components/form/FormInput'
 import { CloseSquare } from '@/app/components/icons/CloseSquare'
