@@ -3,7 +3,6 @@ import { RegisterAside } from './RegisterAside'
 import { RegisterForm } from './RegisterForm'
 
 export default async function RegisterPet() {
-  // const session = await getServerSession(authOptions)
   return (
     <div className="flex bg-opal-100">
       <RegisterAside />

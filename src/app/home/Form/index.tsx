@@ -3,10 +3,10 @@
 import { useGeoCity } from '@/hooks/useGeoCity'
 import { Button } from '@/app/components/Button'
 import { Search } from '@/app/components/icons/Search'
-import { ComponentProps, useEffect, useMemo } from 'react'
+import { ComponentProps, useMemo } from 'react'
 import { useGeoState } from '@/hooks/useGeoState'
 import * as Select from '@/app/components/Select'
-import { useRouter, redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export function Form(props: ComponentProps<'form'>) {
   const { push } = useRouter()

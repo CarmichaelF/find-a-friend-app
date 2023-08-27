@@ -9,7 +9,7 @@ interface FormInputProps extends ComponentProps<'input'> {
   label?: string
 }
 
-const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
+export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   ({ type, label, ...props }, ref) => {
     const id = useId()
     const isPasswordType = type === 'password'
@@ -32,8 +32,8 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
             type={isPasswordType ? (isOn ? 'text' : 'password') : type}
             className="h-full w-full rounded-lg border border-light-grey bg-grey px-4 text-lg font-semibold text-ateneo"
             ref={ref}
-            {...props}
             id={id}
+            {...props}
           />
           {isPasswordType && (
             <button
@@ -55,5 +55,3 @@ const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
 )
 
 FormInput.displayName = 'FormInput'
-
-export { FormInput }

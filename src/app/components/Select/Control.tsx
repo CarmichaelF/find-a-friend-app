@@ -11,8 +11,13 @@ interface ControlProps extends ComponentProps<'select'> {
   options: SelectOptions[]
 }
 
+export const defaultSelectOption = {
+  label: 'Selecione uma opção',
+  value: '',
+}
+
 export function Control({
-  defaultOption = { label: 'Selecione uma opção', value: 'default' },
+  defaultOption = defaultSelectOption,
   options,
   className,
   ...props

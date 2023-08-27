@@ -1,6 +1,7 @@
 'use client'
 
 import { Filters, PetFilters } from '@/app/search-results/interfaces'
+import { useGeoCity } from '@/hooks/useGeoCity'
 import { findAFriendAPI } from '@/services/api'
 import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation'
 import { PropsWithChildren, createContext, useEffect, useState } from 'react'
@@ -8,15 +9,16 @@ import { PropsWithChildren, createContext, useEffect, useState } from 'react'
 type PetsContextType = {
   pets: Pet[]
   fetchPets(city: string): void
-  allFilters: Filters | undefined
+  allFilters: Filters
   selectedFilters: ReadonlyURLSearchParams | undefined
 }
 
 export const PetsContext = createContext({} as PetsContextType)
 
 export const PetsProvider = ({ children }: PropsWithChildren) => {
+  const { selectedCity } = useGeoCity()
   const [pets, setPets] = useState<Pet[]>([])
-  const [allFilters, setAllFilters] = useState<Filters>()
+  const [allFilters, setAllFilters] = useState<Filters>({} as Filters)
   const [selectedFilters, setSelectedFilters] =
     useState<ReadonlyURLSearchParams>()
   const searchParams = useSearchParams()
@@ -40,6 +42,11 @@ export const PetsProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     setSelectedFilters(searchParams)
   }, [searchParams])
+
+  useEffect(() => {
+    if (!selectedCity) return
+    fetchPets(selectedCity.nome)
+  }, [selectedFilters])
 
   return (
     <PetsContext.Provider

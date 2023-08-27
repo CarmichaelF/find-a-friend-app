@@ -1,51 +1,38 @@
 'use client'
 
 import * as Select from '@/app/components/Select'
-import { useGeoCity } from '@/hooks/useGeoCity'
 import { useGetMemoizedOptions } from '@/hooks/useGetMemoizedOptions'
 import { usePets } from '@/hooks/usePets'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { ChangeEvent, useEffect } from 'react'
+import { useQuery } from '@/hooks/useQuery'
+import { ChangeEvent } from 'react'
 
 export function AsideFilters() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const pathname = usePathname()
-  const { selectedFilters, fetchPets } = usePets()
-  const { selectedCity } = useGeoCity()
+  const { changeQuery } = useQuery()
+  const { selectedFilters, allFilters: allOptions } = usePets()
 
   const onSelect = (event: ChangeEvent<HTMLSelectElement>) => {
-    const current = new URLSearchParams(Array.from(searchParams.entries()))
     const { name } = event.target
 
     const value = event.target.value.trim()
-
-    if (!value) {
-      current.delete(name)
-    } else {
-      current.set(name, event.target.value)
-    }
-
-    if (value === 'default') {
-      current.delete(name)
-    }
-    const search = current.toString()
-    const query = search ? `?${search}` : ''
-    router.push(`${pathname}${query}`)
+    changeQuery({ name, value })
   }
 
-  const ageOptions = useGetMemoizedOptions('age')
+  const ageOptions = useGetMemoizedOptions({
+    allOptions,
+    filter: 'age',
+  })
 
-  const energyOptions = useGetMemoizedOptions('energyLevel')
+  const energyOptions = useGetMemoizedOptions({
+    allOptions,
+    filter: 'energyLevel',
+  })
 
-  const sizeOptions = useGetMemoizedOptions('petSize')
+  const sizeOptions = useGetMemoizedOptions({ allOptions, filter: 'petSize' })
 
-  const independenceOptions = useGetMemoizedOptions('independencyLevel')
-
-  useEffect(() => {
-    if (!selectedCity) return
-    fetchPets(selectedCity.nome)
-  }, [selectedFilters])
+  const independenceOptions = useGetMemoizedOptions({
+    allOptions,
+    filter: 'independencyLevel',
+  })
 
   return (
     <div className="flex flex-1 flex-col bg-opal pl-14 pr-10 pt-9">

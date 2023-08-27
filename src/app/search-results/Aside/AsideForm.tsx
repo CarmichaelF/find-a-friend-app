@@ -74,7 +74,7 @@ export function AsideForm() {
           value={selectedCity?.codigo_ibge}
           defaultOption={{
             label: 'Selecione a UF',
-            value: 'default-value',
+            value: '',
           }}
           onChange={(e) => changeSelectedCity(Number(e.target.value))}
         />

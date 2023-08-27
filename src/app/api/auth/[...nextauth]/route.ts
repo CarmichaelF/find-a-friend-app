@@ -18,7 +18,7 @@ export const authOptions: AuthOptions = {
             '/orgs/authenticate',
             credentials,
           )
-          return { ...data.org, apiToken: data.token }
+          return { ...data.org, access_token: data.token }
         } catch (error) {
           if (error instanceof AxiosError)
             return Promise.reject(error.response?.data)
@@ -34,22 +34,20 @@ export const authOptions: AuthOptions = {
     signIn: '/org/sign-in',
   },
   callbacks: {
-    jwt: async ({ token, user, account }) => {
-      console.log('user', user)
+    async jwt({ token, user }) {
+      // the user object is what returned from the Credentials login, it has `access_token` from the server `/login` endpoint
+      // assign the access_token to the `token` object, so it will be available on the `session` callback
       if (user) {
-        token.email = user.email
-        token.sub = user.id
+        token.access_token = user.access_token
       }
-
-      if (account) {
-        token.accessToken = account.access_token
-      }
-
       return token
     },
-    session: ({ session, token }) => {
-      if (token && session.user) {
-        session.user.email = token.email
+
+    async session({ session, token }) {
+      // the token object is what returned from the `jwt` callback, it has the `access_token` that was assigned before
+      // Assign the access_token to the `session` object, so it will be available on our app through `useSession` hooks
+      if (token) {
+        session.access_token = token.access_token as string
       }
       return session
     },
