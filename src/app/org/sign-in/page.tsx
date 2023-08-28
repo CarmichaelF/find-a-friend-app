@@ -1,4 +1,4 @@
-import { SignInForm } from './Form'
+import { SignInForm } from './SignInForm'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 
