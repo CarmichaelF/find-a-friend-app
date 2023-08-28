@@ -16,11 +16,9 @@ const variants = tv({
 
 type Variants = VariantProps<typeof variants>
 
-export function FormButton({
-  children,
-  color,
-  ...props
-}: ComponentProps<'button'> & Variants) {
+type FormButtonProps = Variants & ComponentProps<'button'>
+
+export function FormButton({ children, color, ...props }: FormButtonProps) {
   return (
     <button {...props} className={variants({ color })}>
       {children}

@@ -11,6 +11,7 @@ import { toast } from 'react-toastify'
 import { isObjectEmpty } from '@/utils/verify-empty-object'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export function SignInForm() {
   const SignInSchema = z.object({
@@ -72,7 +73,7 @@ export function SignInForm() {
       <div className="mt-16 flex flex-col gap-5">
         <FormButton type="submit">Login</FormButton>
         <FormButton type="button" color="secondary">
-          Cadastrar minha organização
+          <Link href="/org/sign-up">Cadastrar minha organização</Link>
         </FormButton>
       </div>
     </form>

@@ -12,13 +12,15 @@ export function SearchResultsListCard({
 }: SearchResultsListCardProps) {
   return (
     <div className="flex flex-col items-center rounded-3xl bg-ateneo p-1 shadow">
-      <Image
-        src={image}
-        alt={name}
-        width={140}
-        height={140}
-        className="h-[140px] w-[140px] overflow-hidden rounded-3xl"
-      />
+      <div className="flex max-h-36 items-center justify-center overflow-hidden rounded-3xl">
+        <Image
+          width={300}
+          height={300}
+          src={image}
+          alt={name}
+          className="w-full overflow-hidden rounded-3xl"
+        />
+      </div>
       <div className="relative flex h-[70px] w-full flex-col items-center justify-end">
         <PetIcon className="absolute -top-1/3" />
         <span className="mb-4 mt-2 text-lg font-bold text-white">{name}</span>

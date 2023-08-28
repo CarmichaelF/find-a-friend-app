@@ -15,7 +15,14 @@ import { usePets } from '@/hooks/usePets'
 export function RegisterForm() {
   const { allFilters: allOptions } = usePets()
 
-  const { errors, onSubmit, register, setValue } = useRegisterPet()
+  const {
+    formState: { errors },
+    onSubmit,
+    register,
+    setValue,
+    setError,
+    handleSubmit,
+  } = useRegisterPet()
 
   const ageOptions = useGetMemoizedOptions({
     allOptions,
@@ -48,6 +55,12 @@ export function RegisterForm() {
   })
 
   const handleOnUpload = (files: File[]) => {
+    if (files.length !== 0) {
+      setError('images', {
+        type: 'manual',
+        message: '',
+      })
+    }
     setValue('images', files)
   }
 
@@ -66,7 +79,10 @@ export function RegisterForm() {
   }, [])
 
   return (
-    <form className={'mt-10 flex flex-col gap-6'} onSubmit={onSubmit}>
+    <form
+      className={'mt-10 flex flex-col gap-6'}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <FormInput label="Nome" {...register('name')} />
       <CustomErrorMessage errors={errors} name="name" />
       <FormTextArea
