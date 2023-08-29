@@ -45,9 +45,9 @@ export function useRegisterPet(): UseRegisterPetReturn {
       age: defaultFormSelectOption.value,
       description: '',
       energyLevel: defaultFormSelectOption.value,
+      independencyLevel: defaultFormSelectOption.value,
       environment: defaultFormSelectOption.value,
       images: [],
-      independencyLevel: defaultFormSelectOption.value,
       name: '',
       petSize: defaultFormSelectOption.value,
       petType: defaultFormSelectOption.value,
@@ -70,14 +70,18 @@ export function useRegisterPet(): UseRegisterPetReturn {
         },
       })
 
-      const response = await findAFriendAPI.post(
+      await findAFriendAPI.post(
         '/pets',
-        { ...body, images },
+        {
+          ...body,
+          images,
+          energyLevel: Number(body.energyLevel),
+          independencyLevel: Number(body.independencyLevel),
+        },
         {
           headers: auth,
         },
       )
-      console.log('response', response)
     } catch (error) {
       console.error('error', error)
       if (error instanceof AxiosError) toast.error(error.response?.data.message)

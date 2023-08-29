@@ -21,8 +21,8 @@ interface Pet {
   addressId: string
   age: string
   petSize: string
-  energyLevel: string
-  independencyLevel: string
+  energyLevel: number
+  independencyLevel: number
   environment: string
   images: string[]
   address: Address

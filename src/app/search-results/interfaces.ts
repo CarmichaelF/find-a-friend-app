@@ -9,11 +9,7 @@ export interface PetSize {
   big: string
 }
 
-export interface EnergyLevel {
-  low: string
-  medium: string
-  high: string
-}
+export type EnergyLevel = number[]
 
 export interface IndependencyLevel {
   low: string
