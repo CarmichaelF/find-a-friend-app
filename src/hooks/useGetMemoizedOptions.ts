@@ -7,10 +7,10 @@ interface UseGetMemoizedOptionsProps<T> {
   filter: keyof T
 }
 
-export function useGetMemoizedOptions<T>({
+export function useGetMemoizedOptions<G>({
   allOptions,
   filter,
-}: UseGetMemoizedOptionsProps<T>) {
+}: UseGetMemoizedOptionsProps<G>) {
   const valuesToIterate = allOptions?.[filter] || []
 
   const options = Object.values(valuesToIterate).map((option) => ({
