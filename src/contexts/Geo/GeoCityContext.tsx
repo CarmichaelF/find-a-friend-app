@@ -25,12 +25,7 @@ export const GeoCityContext = createContext({} as GeoCityContextType)
 
 export function GeoCityProvider({ children }: PropsWithChildren) {
   const { selectedState } = useGeoState()
-  const [selectedCity, setSelectedCity] = useState<GeoCity | null>(() => {
-    const localStorageCity = retrieveFromLocalStorage<GeoCity>({
-      key: LOCALSTORAGE.city,
-    })
-    return localStorageCity
-  })
+  const [selectedCity, setSelectedCity] = useState<GeoCity | null>(null)
   const [cities, setCities] = useState<GeoCity[]>([])
   const [loading, setLoading] = useState(false)
 
@@ -64,6 +59,13 @@ export function GeoCityProvider({ children }: PropsWithChildren) {
       if (selectedState) await fetchCities()
     })()
   }, [selectedState])
+
+  useEffect(() => {
+    const localStorageCity = retrieveFromLocalStorage<GeoCity>({
+      key: LOCALSTORAGE.city,
+    })
+    setSelectedCity(localStorageCity)
+  }, [])
 
   return (
     <GeoCityContext.Provider
