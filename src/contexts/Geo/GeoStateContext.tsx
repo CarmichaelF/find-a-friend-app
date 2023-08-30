@@ -29,12 +29,7 @@ type GeoStateContextType = {
 export const GeoStateContext = createContext({} as GeoStateContextType)
 
 export function GeoStateProvider({ children }: PropsWithChildren) {
-  const [selectedState, setSelectedState] = useState<GeoState | null>(() => {
-    const localStorageState = retrieveFromLocalStorage<GeoState>({
-      key: LOCALSTORAGE.state,
-    })
-    return localStorageState
-  })
+  const [selectedState, setSelectedState] = useState<GeoState | null>(null)
   const [states, setStates] = useState<GeoState[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -54,19 +49,24 @@ export function GeoStateProvider({ children }: PropsWithChildren) {
   }
 
   useEffect(() => {
-    ;(async () => {
-      const fetchedStates = await fetchStates()
-      setStates(fetchedStates)
-    })()
-  }, [])
-
-  useEffect(() => {
     if (selectedState === null) return
     saveToLocalStorage({
       key: LOCALSTORAGE.state,
       value: selectedState,
     })
   }, [selectedState])
+
+  useEffect(() => {
+    ;(async () => {
+      const fetchedStates = await fetchStates()
+      setStates(fetchedStates)
+
+      const localStorageState = retrieveFromLocalStorage<GeoState>({
+        key: LOCALSTORAGE.state,
+      })
+      setSelectedState(localStorageState)
+    })()
+  }, [])
 
   return (
     <GeoStateContext.Provider

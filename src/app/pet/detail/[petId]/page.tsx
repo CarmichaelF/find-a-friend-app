@@ -5,6 +5,8 @@ import { PetSizeDisabled } from '@/app/components/icons/PetSizeDisabled'
 import { findAFriendAPI } from '@/services/api'
 import Image from 'next/image'
 import { PetCharacteristic } from './PetCharacteristic'
+import { GoogleMapsWrapper } from '@/app/components/Maps/GoogleMapsWrapper'
+import Link from 'next/link'
 
 export async function generateStaticParams() {
   const {
@@ -54,6 +56,24 @@ export default async function PetDetail({
             <PetSizeDisabled />
           </PetCharacteristic>
         </div>
+        <div className="mt-20">
+          <div className="overflow-hidden rounded-default border border-light-grey">
+            <GoogleMapsWrapper
+              lat={Number(pet.address.latitude)}
+              lng={Number(pet.address.longitude)}
+            />
+          </div>
+          <Link
+            href={`https://www.google.com/maps/place/${pet.address.latitude},${pet.address.longitude}/@${pet.address.latitude},${pet.address.longitude},18z`}
+            target="_blank"
+            className="-mt-5 flex items-center justify-center rounded-b-default bg-ateneo py-5 pt-10"
+          >
+            <span className="text-center text-lg font-bold text-naples">
+              Ver rotas no Google Maps
+            </span>
+          </Link>
+        </div>
+        <hr className="mb-14 mt-10 bg-light-grey" />
       </div>
     </div>
   )
