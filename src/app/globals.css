@@ -13,3 +13,7 @@
   font-family: "Nunito";
   src: url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700;800&display=swap');
 }
+
+.requirement-gradient{
+  background: linear-gradient(130deg, rgba(247, 95, 96, 0.10) 16.45%, rgba(241, 81, 86, 0.00) 67.3%);
+}

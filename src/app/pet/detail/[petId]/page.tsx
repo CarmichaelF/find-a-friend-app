@@ -7,6 +7,9 @@ import Image from 'next/image'
 import { PetCharacteristic } from './PetCharacteristic'
 import { GoogleMapsWrapper } from '@/app/components/Maps/GoogleMapsWrapper'
 import Link from 'next/link'
+import { PetIcon } from '@/app/components/icons/PetIcon'
+import { WhatsApp } from '@/app/components/icons/WhatsApp'
+import { Alert } from '@/app/components/icons/Alert'
 
 export async function generateStaticParams() {
   const {
@@ -74,6 +77,54 @@ export default async function PetDetail({
           </Link>
         </div>
         <hr className="mb-14 mt-10 bg-light-grey" />
+        <div className="flex gap-4">
+          <PetIcon />
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1">
+              <span className="text-3xl font-bold text-ateneo">
+                Seu Cãopanheiro
+              </span>
+              <span className="text-base font-semibold text-ateneo">
+                Rua do meio, 123, Boa viagem, Recife - PE
+              </span>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl bg-grey px-6 py-3">
+              <WhatsApp className="text-ateneo" />
+              <span className="text-lg font-bold text-ateneo">
+                81 1234.4567
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr className="my-14 bg-light-grey" />
+        <div className="flex flex-col gap-10">
+          <span className="text-3xl font-bold text-ateneo">
+            Requesitos para adoção
+          </span>
+          <ul>
+            {pet.requirements.map((requirement, index) => (
+              <li
+                key={index}
+                className="requirement-gradient flex items-center gap-4 rounded-xl border border-opal px-10 py-4"
+              >
+                <Alert />
+                <span className="text-lg font-semibold text-opal">
+                  {requirement.description}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <hr className="my-14 bg-light-grey" />
+        <a
+          className="bg-green flex w-full items-center justify-center gap-4 rounded-default py-5 text-center"
+          href="/"
+        >
+          <WhatsApp className="text-white" />
+          <span className="text-lg font-extrabold text-white">
+            Entrar em contato
+          </span>
+        </a>
       </div>
     </div>
   )
