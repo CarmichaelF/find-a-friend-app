@@ -14,6 +14,7 @@ export const theme = {
       grey: '#F5F8FA',
       'light-grey': '#D3E2E5',
       'dark-grey': '#8FA7B2',
+      green: '#3CDC8C',
     },
     padding: {
       30: '7.5rem',
