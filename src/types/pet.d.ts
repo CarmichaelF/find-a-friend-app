@@ -13,11 +13,21 @@ interface Requirement {
   petId: string
 }
 
+interface ORG {
+  id: string
+  name: string
+  email: string
+  phone: string
+  password_hash: string
+  addressId: string
+}
+
 interface Pet {
   id: string
   name: string
   description: string
   oRGId: string
+  org: ORG
   addressId: string
   age: string
   petSize: string

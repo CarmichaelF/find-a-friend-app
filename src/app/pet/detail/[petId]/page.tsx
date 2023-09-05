@@ -3,13 +3,14 @@ import { PetEnvironment } from '@/app/components/icons/PetEnvironment'
 import { PetSize } from '@/app/components/icons/PetSize'
 import { PetSizeDisabled } from '@/app/components/icons/PetSizeDisabled'
 import { findAFriendAPI } from '@/services/api'
-import Image from 'next/image'
 import { PetCharacteristic } from './PetCharacteristic'
 import { GoogleMapsWrapper } from '@/app/components/Maps/GoogleMapsWrapper'
 import Link from 'next/link'
 import { PetIcon } from '@/app/components/icons/PetIcon'
 import { WhatsApp } from '@/app/components/icons/WhatsApp'
 import { Alert } from '@/app/components/icons/Alert'
+
+import { PetSlider } from './PetSlider'
 
 export async function generateStaticParams() {
   const {
@@ -32,15 +33,7 @@ export default async function PetDetail({
 
   return (
     <div className="m-auto h-full max-h-register-pet-form w-full max-w-register-aside overflow-auto rounded-default border border-light-grey bg-white">
-      <div className="flex max-h-[350px] items-center justify-center overflow-hidden">
-        <Image
-          src={pet.images[0]}
-          width={400}
-          height={400}
-          alt={pet.name}
-          className="w-full"
-        />
-      </div>
+      <PetSlider pet={pet} />
       <div className="mt-20 px-20 py-16">
         <h1 className="text-6xl font-extrabold text-ateneo">{pet.name}</h1>
         <p className="mb-11 mt-6 text-lg font-semibold text-ateneo">
@@ -82,16 +75,16 @@ export default async function PetDetail({
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
               <span className="text-3xl font-bold text-ateneo">
-                Seu Cãopanheiro
+                {pet.org.name}
               </span>
               <span className="text-base font-semibold text-ateneo">
-                Rua do meio, 123, Boa viagem, Recife - PE
+                {pet.address.address}
               </span>
             </div>
             <div className="flex items-center gap-3 rounded-xl bg-grey px-6 py-3">
               <WhatsApp className="text-ateneo" />
               <span className="text-lg font-bold text-ateneo">
-                81 1234.4567
+                {pet.org.phone}
               </span>
             </div>
           </div>
@@ -101,7 +94,7 @@ export default async function PetDetail({
           <span className="text-3xl font-bold text-ateneo">
             Requesitos para adoção
           </span>
-          <ul>
+          <ul className="flex flex-col gap-3">
             {pet.requirements.map((requirement, index) => (
               <li
                 key={index}
@@ -116,15 +109,15 @@ export default async function PetDetail({
           </ul>
         </div>
         <hr className="my-14 bg-light-grey" />
-        <a
-          className="bg-green flex w-full items-center justify-center gap-4 rounded-default py-5 text-center"
-          href="/"
+        <Link
+          className="flex w-full items-center justify-center gap-4 rounded-default bg-green py-5 text-center"
+          href={`https://wa.me/${pet.org.phone}`}
         >
           <WhatsApp className="text-white" />
           <span className="text-lg font-extrabold text-white">
             Entrar em contato
           </span>
-        </a>
+        </Link>
       </div>
     </div>
   )
