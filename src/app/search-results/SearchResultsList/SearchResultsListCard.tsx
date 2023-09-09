@@ -15,8 +15,8 @@ export function SearchResultsListCard({
 }: SearchResultsListCardProps) {
   return (
     <Link href={`/pet/detail/${id}`}>
-      <div className="flex flex-col items-center rounded-3xl bg-ateneo p-1 shadow">
-        <div className="flex max-h-36 items-center justify-center overflow-hidden rounded-3xl">
+      <div className="group flex flex-col items-center rounded-3xl bg-white p-1 transition-all hover:bg-ateneo">
+        <div className="flex max-h-36 w-full items-center justify-center overflow-hidden rounded-3xl">
           <Image
             width={300}
             height={300}
@@ -27,7 +27,9 @@ export function SearchResultsListCard({
         </div>
         <div className="relative flex h-[70px] w-full flex-col items-center justify-end">
           <PetIcon className="absolute -top-1/3" />
-          <span className="mb-4 mt-2 text-lg font-bold text-white">{name}</span>
+          <span className="mb-4 mt-2 text-lg font-bold text-ateneo group-hover:text-white">
+            {name}
+          </span>
         </div>
       </div>
     </Link>

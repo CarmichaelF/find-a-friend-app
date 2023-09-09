@@ -7,7 +7,7 @@ export default function SearchResultsLayout({ children }: PropsWithChildren) {
   return (
     <GeoProvider>
       <PetsProvider>
-        <div className="grid grid-cols-search-results">
+        <div className="grid grid-cols-search-results bg-[#FDECED]">
           <Aside />
           <main className="w-full">{children}</main>
         </div>

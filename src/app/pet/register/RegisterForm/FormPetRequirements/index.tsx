@@ -68,9 +68,9 @@ export function FormPetRequirements({
         {requirements.map((requirement) => (
           <div
             key={requirement}
-            className="flex h-12 min-w-full items-center gap-3 overflow-hidden text-ellipsis whitespace-nowrap rounded-xl border border-light-grey px-3"
+            className="flex items-center gap-3 rounded-xl border border-light-grey p-2 px-3"
           >
-            <span className="text-sm font-normal text-ateneo">
+            <span className="break-all text-sm font-normal text-ateneo">
               {requirement}
             </span>
             <button

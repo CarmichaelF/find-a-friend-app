@@ -39,6 +39,7 @@ export const authOptions: AuthOptions = {
       // assign the access_token to the `token` object, so it will be available on the `session` callback
       if (user) {
         token.access_token = user.access_token
+        token.address = user.address
       }
       return token
     },
@@ -48,6 +49,9 @@ export const authOptions: AuthOptions = {
       // Assign the access_token to the `session` object, so it will be available on our app through `useSession` hooks
       if (token) {
         session.access_token = token.access_token as string
+      }
+      if (token && session.user) {
+        session.user.address = token.address
       }
       return session
     },
