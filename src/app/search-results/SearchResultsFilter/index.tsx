@@ -28,7 +28,7 @@ export function SearchResultsFilter() {
         na sua cidade
       </span>
       {!isObjectEmpty(allFilters) && (
-        <Select.Root className="bg-opal-100 text-ateneo">
+        <Select.Root className="border-none bg-opal-100 text-ateneo">
           <Select.Control
             options={Object.values(allFilters.petType).map((type) => ({
               label: type.charAt(0).toUpperCase() + type.slice(1),

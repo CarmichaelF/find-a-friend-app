@@ -9,7 +9,7 @@ export const theme = {
         500: '#E44449',
         100: '#FBE1E2',
       },
-      ateneo: '#0D3B66',
+      ateneo: { 400: '#114A80', DEFAULT: '#0D3B66' },
       naples: '#F4D35E',
       grey: '#F5F8FA',
       'light-grey': '#D3E2E5',
@@ -36,7 +36,7 @@ export const theme = {
       'search-results': 'minmax(400px, 600px) 1fr',
     },
     maxWidth: {
-      'register-aside': '700px',
+      'pet-form': '700px',
       container: '1420px',
     },
     maxHeight: {

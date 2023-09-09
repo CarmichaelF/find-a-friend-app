@@ -5,7 +5,7 @@ import { AsideFilters } from './Filters'
 
 export function Aside() {
   return (
-    <aside className="flex h-screen flex-col">
+    <aside className="sticky bottom-0 top-0 flex h-screen flex-col">
       <div className="flex h-full flex-col bg-opal-500">
         <div className="flex flex-col gap-6 pl-14 pt-20">
           <Link href="/">

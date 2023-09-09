@@ -41,28 +41,31 @@ export function PetSlider({ pet }: PetSliderProps) {
           </div>
         ))}
       </Slider>
-      <Slider
-        ref={(slider) => setNavThumbnails(slider)}
-        asNavFor={slider || undefined}
-        slidesToShow={images.length - 1}
-        slidesToScroll={1}
-        focusOnSelect
-        className="mt-8 [&_.slick-current_.pet-slider-content]:opacity-100"
-      >
-        {images.map((image, index) => (
-          <div
-            className="pet-slider-content !flex max-h-[80px] max-w-[80px] cursor-pointer items-center justify-center overflow-hidden rounded-default opacity-40 transition-all"
-            key={`${pet.id}-${index}`}
-          >
-            <Image
-              width={80}
-              height={80}
-              src={image}
-              alt={`${pet.name}-${index}`}
-            />
-          </div>
-        ))}
-      </Slider>
+      {images.length > 1 && (
+        <Slider
+          ref={(slider) => setNavThumbnails(slider)}
+          asNavFor={slider || undefined}
+          slidesToShow={images.length - 1}
+          slidesToScroll={1}
+          focusOnSelect
+          className="mt-8 [&_.slick-current_.pet-slider-content]:border-ateneo [&_.slick-current_.pet-slider-content]:opacity-100 [&_.slick-slide>div]:flex [&_.slick-slide>div]:items-center [&_.slick-slide>div]:justify-center"
+          centerMode
+        >
+          {images.map((image, index) => (
+            <div
+              className="pet-slider-content !flex max-h-[80px] max-w-[80px] cursor-pointer items-center justify-center overflow-hidden rounded-default border-4 border-transparent opacity-40 transition-all"
+              key={`${pet.id}-${index}`}
+            >
+              <Image
+                width={80}
+                height={80}
+                src={image}
+                alt={`${pet.name}-${index}`}
+              />
+            </div>
+          ))}
+        </Slider>
+      )}
     </div>
   )
 }

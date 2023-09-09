@@ -37,9 +37,9 @@ export function AsideFilters() {
   return (
     <div className="flex flex-1 flex-col bg-opal pl-14 pr-10 pt-9">
       <span className="text-xl font-extrabold text-white">Filtros</span>
-      <div className="my-7">
+      <div className="my-5">
         <Select.Label htmlFor="age-filter">Idade</Select.Label>
-        <Select.Root className="mt-3 w-full bg-opal-400">
+        <Select.Root className="mt-3 w-full border-none bg-opal-400">
           <Select.Control
             options={ageOptions}
             onChange={onSelect}
@@ -49,9 +49,9 @@ export function AsideFilters() {
           />
         </Select.Root>
       </div>
-      <div className="my-7">
+      <div className="my-5">
         <Select.Label htmlFor="energy-filter">Nível de Energia</Select.Label>
-        <Select.Root className="mt-3 w-full bg-opal-400">
+        <Select.Root className="mt-3 w-full border-none bg-opal-400">
           <Select.Control
             options={energyOptions}
             onChange={onSelect}
@@ -61,9 +61,9 @@ export function AsideFilters() {
           />
         </Select.Root>
       </div>
-      <div className="my-7">
+      <div className="my-5">
         <Select.Label htmlFor="size-filter">Porte do animal</Select.Label>
-        <Select.Root className="mt-3 w-full bg-opal-400">
+        <Select.Root className="mt-3 w-full border-none bg-opal-400">
           <Select.Control
             options={sizeOptions}
             onChange={onSelect}
@@ -73,11 +73,11 @@ export function AsideFilters() {
           />
         </Select.Root>
       </div>
-      <div className="my-7">
+      <div className="my-5">
         <Select.Label htmlFor="independency-filter">
           Nível de independência
         </Select.Label>
-        <Select.Root className="mt-3 w-full bg-opal-400">
+        <Select.Root className="mt-3 w-full border-none bg-opal-400">
           <Select.Control
             options={independenceOptions}
             onChange={onSelect}
