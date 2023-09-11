@@ -1,14 +1,13 @@
-'use client'
-
 import * as Select from '@/app/components/Select'
 import { useGetMemoizedOptions } from '@/hooks/useGetMemoizedOptions'
 import { usePets } from '@/hooks/usePets'
 import { useQuery } from '@/hooks/useQuery'
 import { ChangeEvent } from 'react'
 
-export function AsideFilters() {
-  const { changeQuery } = useQuery()
+export function MenuFilters() {
   const { selectedFilters, allFilters: allOptions } = usePets()
+
+  const { changeQuery } = useQuery()
 
   const onSelect = (event: ChangeEvent<HTMLSelectElement>) => {
     const { name } = event.target
@@ -33,9 +32,8 @@ export function AsideFilters() {
     allOptions,
     filter: 'independencyLevel',
   })
-
   return (
-    <div className="flex flex-1 flex-col bg-opal pl-14 pr-10 pt-9">
+    <>
       <span className="text-xl font-extrabold text-white">Filtros</span>
       <div className="my-5">
         <Select.Label htmlFor="age-filter">Idade</Select.Label>
@@ -87,6 +85,6 @@ export function AsideFilters() {
           />
         </Select.Root>
       </div>
-    </div>
+    </>
   )
 }

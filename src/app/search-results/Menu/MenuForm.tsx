@@ -8,7 +8,7 @@ import { Button } from '../../components/Button'
 import { Search } from '../../components/icons/Search'
 import { usePets } from '@/hooks/usePets'
 
-export function AsideForm() {
+export function MenuForm() {
   const { fetchPets } = usePets()
   const {
     loading: loadingCity,
@@ -51,7 +51,7 @@ export function AsideForm() {
       className="flex w-full items-center gap-3 pr-10"
       onSubmit={handleSubmit}
     >
-      <Select.Root loading={loadingState} className="bg-opal-500">
+      <Select.Root loading={loadingState} className="min-w-fit bg-opal-500">
         <Select.Control
           name="state"
           value={selectedState?.id}
@@ -79,7 +79,7 @@ export function AsideForm() {
           onChange={(e) => changeSelectedCity(Number(e.target.value))}
         />
       </Select.Root>
-      <Button type="submit">
+      <Button type="submit" className="min-w-[80px] flex-1 md:flex-auto">
         <Search />
       </Button>
     </form>

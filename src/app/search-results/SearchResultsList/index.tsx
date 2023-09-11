@@ -14,7 +14,7 @@ export function SearchResultsList() {
   }, [])
 
   return (
-    <div className="mt-12 grid grid-cols-[repeat(3,minmax(200px,500px))] gap-8">
+    <div className="mt-12 grid grid-cols-[repeat(2,minmax(200px,500px))] gap-8 lg:grid-cols-[repeat(3,minmax(200px,500px))]">
       {pets?.map(({ images, name, id }) => (
         <SearchResultsListCard image={images[0]} id={id} name={name} key={id} />
       ))}

@@ -12,7 +12,7 @@ export function CloseSquare(props: ComponentProps<'svg'>) {
     >
       <path
         d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zM9 9l6 6M15 9l-6 6"
-        stroke="#E44449"
+        stroke="currentColor"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"

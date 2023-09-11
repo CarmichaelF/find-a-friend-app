@@ -153,7 +153,7 @@ export const FormFileInput = ({
                   type="button"
                   onClick={() => handleDeleteFile(file.name)}
                 >
-                  <CloseSquare />
+                  <CloseSquare className="text-opal" />
                 </button>
               </div>
             ))}
