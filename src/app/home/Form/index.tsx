@@ -49,12 +49,12 @@ export function Form(props: ComponentProps<'form'>) {
 
   return (
     <form
-      className="flex items-center gap-8"
+      className="flex flex-col gap-8 md:flex-row"
       {...props}
       onSubmit={handleSubmit}
     >
-      <div className="flex items-center gap-3">
-        <div className="flex items-center gap-6">
+      <div className="flex flex-col gap-3 md:flex-row">
+        <div className="mt-4 flex items-center gap-6 md:m-0">
           <Select.Label>Busque um amigo:</Select.Label>
           <Select.Root loading={loadingState}>
             <Select.Control

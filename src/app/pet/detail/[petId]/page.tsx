@@ -32,7 +32,7 @@ export default async function PetDetail({
   } = await findAFriendAPI<{ pet: Pet }>(`/pets/${petId}`)
 
   return (
-    <div className="m-auto h-full max-h-register-pet-form w-full max-w-pet-form overflow-auto rounded-default border border-light-grey bg-white">
+    <div className="m-auto mt-10 w-[calc(100vw-100px)] max-w-pet-form overflow-auto rounded-default border border-light-grey bg-white md:max-h-register-pet-form">
       <PetSlider pet={pet} />
       <div className="mt-10 px-20 py-16">
         <h1 className="text-6xl font-extrabold text-ateneo">{pet.name}</h1>

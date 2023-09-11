@@ -6,7 +6,7 @@ import { Arrow } from '@/app/components/icons/Arrow'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-export function RegisterAside() {
+export function RegisterMenu() {
   const router = useRouter()
 
   const handleBack = () => {
@@ -14,7 +14,7 @@ export function RegisterAside() {
   }
 
   return (
-    <aside className="flex h-screen w-24 flex-col items-center justify-between bg-opal py-8">
+    <nav className="sticky top-0 z-10 flex items-center justify-between bg-opal px-10 py-8 md:relative md:h-screen md:w-24 md:flex-col md:px-0">
       <Link href="/">
         <Logo hideText viewBox="0 0 45 65" width={45} height={45} />
       </Link>
@@ -25,6 +25,6 @@ export function RegisterAside() {
       >
         <Arrow />
       </Button>
-    </aside>
+    </nav>
   )
 }
